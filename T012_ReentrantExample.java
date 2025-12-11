@@ -6,11 +6,11 @@ public class T012_ReentrantExample {
 
     public void outerMethod() {
         lock.lock();
-//		lock.lockInterruptibly();
+//        lock.lockInterruptibly(); // suppose there is another thread which is waiting for long time to make this resource interruptible we make the resource interruptible using .lockInterruptibly()
         try {
 
-        }catch(Exception e) {
-
+        }finally {
+            lock.unlock();
         }
     }
 
@@ -18,8 +18,11 @@ public class T012_ReentrantExample {
         lock.lock();
         try {
 
-        }catch(Exception e){
-
+        }finally {
+            lock.unlock();
+//            lock.unlock(); // writing it again will completely unlock even the outerMethod, so where you use .lock() in its finally do use .unlock()
         }
     }
 }
+
+// Reentrant class in this way acquire synchronization
