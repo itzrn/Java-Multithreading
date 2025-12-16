@@ -1,5 +1,5 @@
 
-public class T18_JavaLambda {
+public class T018_JavaLambda {
 
     public static void main(String[] args) {
         // Runnable is an functional interface that's y we can use here as lambda function
